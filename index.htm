@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="cep">
+    <button id="consulta" onclick="consultaCep()">Consultar CEP</button>
+.
+.
+    <script>
+        async function consultaCep(){
+            const button = document.getElementById("consulta")
+            button.disabled = true
+
+            const cep = document.getElementById("cep").value
+
+            try {
+                const resultado = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                if(resultado.ok){
+                    const endereco = await resultado.json()
+                    console.log(endereco);
+
+                }
+            }catch(e){
+
+            }finally{
+                button.desabled = false
+            }
+
+        }
+    </script>
+</body>
+</html>
